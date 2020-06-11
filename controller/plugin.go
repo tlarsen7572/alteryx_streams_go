@@ -33,7 +33,7 @@ func (plugin *Controller) Init(toolId int, configXml string) bool {
 	plugin.Seconds = config.Seconds
 
 	generator := recordinfo.NewGenerator()
-	generator.AddV_StringField(eventField, `Controller`, 10)
+	generator.AddStringField(eventField, `Controller`, 10)
 	plugin.Info = generator.GenerateRecordInfo()
 	plugin.Output = output_connection.New(toolId, `Output`)
 	return true
@@ -80,14 +80,11 @@ func (plugin *Controller) PushAllRecords(_ int) bool {
 
 	plugin.Output.PushRecord(record)
 	api.OutputMessage(plugin.ToolId, api.Complete, ``)
-	plugin.Output.UpdateProgress(1)
 	plugin.Output.Close()
 	return true
 }
 
-func (plugin *Controller) Close(_ bool) {
-	api.OutputMessage(plugin.ToolId, api.Info, `was asked to close`)
-}
+func (plugin *Controller) Close(_ bool) {}
 
 func (plugin *Controller) AddIncomingConnection(_ string, _ string) (api.IncomingInterface, *presort.PresortInfo) {
 	return nil, nil

@@ -67,7 +67,6 @@ func (ii *Ii) UpdateProgress(percent float64) {
 func (ii *Ii) Close() {
 	<-ii.loopDone
 	api.OutputMessage(ii.ToolId, api.Complete, ``)
-	api.OutputToolProgress(ii.ToolId, 1)
 	ii.Output.Close()
 }
 
