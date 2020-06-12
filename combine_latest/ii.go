@@ -7,9 +7,11 @@ import (
 )
 
 type Ii struct {
-	Parent *Plugin
-	Name   string
-	ToolId int
+	Parent        *Plugin
+	ToolId        int
+	initCallback  func(info recordinfo.RecordInfo)
+	pushCallback  func(unsafe.Pointer) bool
+	closeCallback func()
 }
 
 func (ii *Ii) Init(recordInfoIn string) bool {
@@ -17,20 +19,20 @@ func (ii *Ii) Init(recordInfoIn string) bool {
 	if err != nil {
 		api.OutputMessage(ii.ToolId, api.Error, err.Error())
 	}
-	ii.Parent.initInput(ii.Name, info)
+	ii.initCallback(info)
 	return true
 }
 
 func (ii *Ii) PushRecord(record unsafe.Pointer) bool {
-	panic("implement me")
+	return ii.pushCallback(record)
 }
 
 func (ii *Ii) UpdateProgress(percent float64) {
-	panic("implement me")
+	ii.Parent.updateProgress(percent)
 }
 
 func (ii *Ii) Close() {
-	panic("implement me")
+	ii.closeCallback()
 }
 
 func (ii *Ii) CacheSize() int {
