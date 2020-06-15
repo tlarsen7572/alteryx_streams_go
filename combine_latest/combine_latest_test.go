@@ -4,6 +4,7 @@ import (
 	"alteryx_streams_go/combine_latest"
 	"fmt"
 	"github.com/tlarsen7572/goalteryx/api"
+	"github.com/tlarsen7572/goalteryx/recordblob"
 	"github.com/tlarsen7572/goalteryx/recordinfo"
 	"testing"
 	"unsafe"
@@ -11,7 +12,7 @@ import (
 
 type iiMock struct {
 	recordsPassed int
-	pushCallback  func(pointer unsafe.Pointer)
+	pushCallback  func(*recordblob.RecordBlob)
 	info          recordinfo.RecordInfo
 }
 
@@ -20,7 +21,7 @@ func (i *iiMock) Init(recordInfoIn string) bool {
 	return true
 }
 
-func (i *iiMock) PushRecord(record unsafe.Pointer) bool {
+func (i *iiMock) PushRecord(record *recordblob.RecordBlob) bool {
 	i.pushCallback(record)
 	return true
 }
@@ -37,15 +38,15 @@ func TestPushHasNoErrors(t *testing.T) {
 	plugin := &combine_latest.Plugin{}
 	plugin.Init(1, ``)
 	mock := &iiMock{}
-	mock.pushCallback = func(record unsafe.Pointer) {
+	mock.pushCallback = func(record *recordblob.RecordBlob) {
 		mock.recordsPassed++
 		t.Logf(`got record`)
 	}
 	plugin.AddOutgoingConnection(``, api.NewConnectionInterfaceStruct(mock))
 	leftIi, _ := initIi(plugin, `Left`)
 	rightIi, _ := initIi(plugin, `Right`)
-	leftIi.PushRecord(unsafe.Pointer(&[]byte{1, 0, 0, 0, 0, 0, 0, 0, 0}[0]))
-	rightIi.PushRecord(unsafe.Pointer(&[]byte{2, 0, 0, 0, 0, 0, 0, 0, 0}[0]))
+	leftIi.PushRecord(recordblob.NewRecordBlob(unsafe.Pointer(&[]byte{1, 0, 0, 0, 0, 0, 0, 0, 0}[0])))
+	rightIi.PushRecord(recordblob.NewRecordBlob(unsafe.Pointer(&[]byte{2, 0, 0, 0, 0, 0, 0, 0, 0}[0])))
 
 	if mock.recordsPassed != 1 {
 		t.Fatalf(`expected 1 record but got %v`, mock.recordsPassed)

@@ -4,9 +4,9 @@ import (
 	"github.com/tlarsen7572/goalteryx/api"
 	"github.com/tlarsen7572/goalteryx/output_connection"
 	"github.com/tlarsen7572/goalteryx/presort"
+	"github.com/tlarsen7572/goalteryx/recordblob"
 	"github.com/tlarsen7572/goalteryx/recordcopier"
 	"github.com/tlarsen7572/goalteryx/recordinfo"
-	"unsafe"
 )
 
 type Plugin struct {
@@ -85,7 +85,7 @@ func (plugin *Plugin) initOutput() {
 	plugin.setUpCopiers()
 }
 
-func (plugin *Plugin) pushLeft(record unsafe.Pointer) bool {
+func (plugin *Plugin) pushLeft(record *recordblob.RecordBlob) bool {
 	err := plugin.LeftCopier.Copy(record)
 	if err != nil {
 		api.OutputMessage(plugin.ToolId, api.Error, err.Error())
@@ -95,7 +95,7 @@ func (plugin *Plugin) pushLeft(record unsafe.Pointer) bool {
 	return plugin.tryPushOut(record)
 }
 
-func (plugin *Plugin) pushRight(record unsafe.Pointer) bool {
+func (plugin *Plugin) pushRight(record *recordblob.RecordBlob) bool {
 	err := plugin.RightCopier.Copy(record)
 	if err != nil {
 		api.OutputMessage(plugin.ToolId, api.Error, err.Error())
@@ -105,7 +105,7 @@ func (plugin *Plugin) pushRight(record unsafe.Pointer) bool {
 	return plugin.tryPushOut(record)
 }
 
-func (plugin *Plugin) tryPushOut(record unsafe.Pointer) bool {
+func (plugin *Plugin) tryPushOut(record *recordblob.RecordBlob) bool {
 	if !(plugin.hasLeft && plugin.hasRight) {
 		return true
 	}

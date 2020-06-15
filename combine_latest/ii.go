@@ -2,15 +2,15 @@ package combine_latest
 
 import (
 	"github.com/tlarsen7572/goalteryx/api"
+	"github.com/tlarsen7572/goalteryx/recordblob"
 	"github.com/tlarsen7572/goalteryx/recordinfo"
-	"unsafe"
 )
 
 type Ii struct {
 	Parent        *Plugin
 	ToolId        int
 	initCallback  func(info recordinfo.RecordInfo)
-	pushCallback  func(unsafe.Pointer) bool
+	pushCallback  func(*recordblob.RecordBlob) bool
 	closeCallback func()
 }
 
@@ -23,7 +23,7 @@ func (ii *Ii) Init(recordInfoIn string) bool {
 	return true
 }
 
-func (ii *Ii) PushRecord(record unsafe.Pointer) bool {
+func (ii *Ii) PushRecord(record *recordblob.RecordBlob) bool {
 	return ii.pushCallback(record)
 }
 

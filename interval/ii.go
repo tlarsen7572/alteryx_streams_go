@@ -3,9 +3,9 @@ package interval
 import (
 	"github.com/tlarsen7572/goalteryx/api"
 	"github.com/tlarsen7572/goalteryx/output_connection"
+	"github.com/tlarsen7572/goalteryx/recordblob"
 	"github.com/tlarsen7572/goalteryx/recordinfo"
 	"time"
-	"unsafe"
 )
 
 type Ii struct {
@@ -39,7 +39,7 @@ func (ii *Ii) Init(recordInfoIn string) bool {
 	return true
 }
 
-func (ii *Ii) PushRecord(record unsafe.Pointer) bool {
+func (ii *Ii) PushRecord(record *recordblob.RecordBlob) bool {
 	event, isNull, err := ii.inInfo.GetStringValueFrom(`Event`, record)
 	if err != nil {
 		api.OutputMessage(ii.ToolId, api.Error, err.Error())
