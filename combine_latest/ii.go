@@ -10,7 +10,7 @@ type Ii struct {
 	Parent        *Plugin
 	ToolId        int
 	initCallback  func(info recordinfo.RecordInfo)
-	pushCallback  func(*recordblob.RecordBlob) bool
+	pushCallback  func(recordblob.RecordBlob) bool
 	closeCallback func()
 }
 
@@ -23,7 +23,7 @@ func (ii *Ii) Init(recordInfoIn string) bool {
 	return true
 }
 
-func (ii *Ii) PushRecord(record *recordblob.RecordBlob) bool {
+func (ii *Ii) PushRecord(record recordblob.RecordBlob) bool {
 	return ii.pushCallback(record)
 }
 

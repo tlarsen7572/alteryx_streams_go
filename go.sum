@@ -16,3 +16,11 @@ github.com/tlarsen7572/goalteryx v0.4.5 h1:t/zVCal91jHY6iEr1J6br2podPTzBs9xbhXqI
 github.com/tlarsen7572/goalteryx v0.4.5/go.mod h1:gOTlt/oKDY9UIojXB+EK9MfQBE7y3HkSMjLSaBY0Ptw=
 github.com/tlarsen7572/goalteryx v0.4.6 h1:s0JGPr8I8Lry8qizFowqyZIK8GCm70KLCaHv2TxZZ6I=
 github.com/tlarsen7572/goalteryx v0.4.6/go.mod h1:gOTlt/oKDY9UIojXB+EK9MfQBE7y3HkSMjLSaBY0Ptw=
+github.com/tlarsen7572/goalteryx v0.4.7 h1:aEwrcALaGeq/paqVJxWgbY69Y9jhQ9rph00KTwyUmVw=
+github.com/tlarsen7572/goalteryx v0.4.7/go.mod h1:gOTlt/oKDY9UIojXB+EK9MfQBE7y3HkSMjLSaBY0Ptw=
+github.com/tlarsen7572/goalteryx v0.4.8 h1:FeP6rXe+L7ImxQGAp1Q4ioiyyNtYOH6BaFYpgkRWGN4=
+github.com/tlarsen7572/goalteryx v0.4.8/go.mod h1:gOTlt/oKDY9UIojXB+EK9MfQBE7y3HkSMjLSaBY0Ptw=
+github.com/tlarsen7572/goalteryx v0.4.9 h1:SqycGLXmbsbzHJMNmlORFfnjKNUpxfPB37kdXN4PugE=
+github.com/tlarsen7572/goalteryx v0.4.9/go.mod h1:gOTlt/oKDY9UIojXB+EK9MfQBE7y3HkSMjLSaBY0Ptw=
+github.com/tlarsen7572/goalteryx v0.4.10 h1:tZ5Dy5lP5md8Dd4rwxQuYxQUBKAuhEEK8aDIKclpBGU=
+github.com/tlarsen7572/goalteryx v0.4.10/go.mod h1:gOTlt/oKDY9UIojXB+EK9MfQBE7y3HkSMjLSaBY0Ptw=

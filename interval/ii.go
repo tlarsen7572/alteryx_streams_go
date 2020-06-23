@@ -39,7 +39,7 @@ func (ii *Ii) Init(recordInfoIn string) bool {
 	return true
 }
 
-func (ii *Ii) PushRecord(record *recordblob.RecordBlob) bool {
+func (ii *Ii) PushRecord(record recordblob.RecordBlob) bool {
 	event, isNull, err := ii.inInfo.GetStringValueFrom(`Event`, record)
 	if err != nil {
 		api.OutputMessage(ii.ToolId, api.Error, err.Error())

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<AlteryxDocument yxmdVer="2019.4">
+<AlteryxDocument yxmdVer="2020.2">
   <Nodes>
     <Node ToolID="2">
       <GuiSettings Plugin="StreamerInterval">
@@ -19,11 +19,11 @@
     </Node>
     <Node ToolID="3">
       <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
-        <Position x="450" y="54" />
+        <Position x="438" y="54" />
       </GuiSettings>
       <Properties>
         <Configuration>
-          <TempFile>C:\Users\tlarsen\AppData\Local\Temp\Engine_7620_ed4e1aaff3fe4767880b065dc6438b2d_\Engine_12192_51110fbcde4a470c9303b78389fc54f0_.yxdb</TempFile>
+          <TempFile>C:\Users\tlarsen\AppData\Local\Temp\Engine_11832_cb04c5e7f7504d588c56b22499fb2a5f_\Engine_10688_8f2fed8eecaa42518267edaf18e196ac_.yxdb</TempFile>
           <TempFileDataProfiling />
           <Layout>
             <ViewMode>Single</ViewMode>
@@ -97,7 +97,7 @@
       </GuiSettings>
       <Properties>
         <Configuration>
-          <TempFile>C:\Users\tlarsen\AppData\Local\Temp\Engine_7620_ed4e1aaff3fe4767880b065dc6438b2d_\Engine_12192_8e20e610fa7946538b2d5ec9c0cc9d80_.yxdb</TempFile>
+          <TempFile>C:\Users\tlarsen\AppData\Local\Temp\Engine_11832_cb04c5e7f7504d588c56b22499fb2a5f_\Engine_10688_03817d1f354c459b8358a14bd63a0168_.yxdb</TempFile>
           <TempFileDataProfiling />
           <Layout>
             <ViewMode>Single</ViewMode>
@@ -203,6 +203,50 @@
       </Properties>
       <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
     </Node>
+    <Node ToolID="12">
+      <GuiSettings Plugin="StreamerBuffer">
+        <Position x="438" y="198" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Records>2</Records>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="alteryx_streams_go.dll" EngineDllEntryPoint="Buffer" />
+    </Node>
+    <Node ToolID="13">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.BrowseV2.BrowseV2">
+        <Position x="534" y="198" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <TempFile>C:\Users\tlarsen\AppData\Local\Temp\Engine_11832_cb04c5e7f7504d588c56b22499fb2a5f_\Engine_10688_a838accf01f14109a17f23955af88abc_.yxdb</TempFile>
+          <TempFileDataProfiling />
+          <Layout>
+            <ViewMode>Single</ViewMode>
+            <ViewSize value="100" />
+            <View1>
+              <DefaultTab>Profile</DefaultTab>
+              <Hints>
+                <Table />
+              </Hints>
+            </View1>
+            <View2 />
+          </Layout>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText />
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxBrowseV2" />
+    </Node>
   </Nodes>
   <Connections>
     <Connection>
@@ -244,6 +288,14 @@
     <Connection>
       <Origin ToolID="11" Connection="Output" />
       <Destination ToolID="6" Connection="Right" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="11" Connection="Output" />
+      <Destination ToolID="12" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="12" Connection="Output" />
+      <Destination ToolID="13" Connection="Input" />
     </Connection>
   </Connections>
   <Properties>

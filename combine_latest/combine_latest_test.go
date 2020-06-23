@@ -12,7 +12,7 @@ import (
 
 type iiMock struct {
 	recordsPassed int
-	pushCallback  func(*recordblob.RecordBlob)
+	pushCallback  func(recordblob.RecordBlob)
 	info          recordinfo.RecordInfo
 }
 
@@ -21,7 +21,7 @@ func (i *iiMock) Init(recordInfoIn string) bool {
 	return true
 }
 
-func (i *iiMock) PushRecord(record *recordblob.RecordBlob) bool {
+func (i *iiMock) PushRecord(record recordblob.RecordBlob) bool {
 	i.pushCallback(record)
 	return true
 }
@@ -38,7 +38,7 @@ func TestPushHasNoErrors(t *testing.T) {
 	plugin := &combine_latest.Plugin{}
 	plugin.Init(1, ``)
 	mock := &iiMock{}
-	mock.pushCallback = func(record *recordblob.RecordBlob) {
+	mock.pushCallback = func(record recordblob.RecordBlob) {
 		mock.recordsPassed++
 		t.Logf(`got record`)
 	}

@@ -5,6 +5,7 @@ package main
 */
 import "C"
 import (
+	"alteryx_streams_go/buffer"
 	"alteryx_streams_go/combine_latest"
 	"alteryx_streams_go/controller"
 	"alteryx_streams_go/interval"
@@ -29,5 +30,11 @@ func Interval(toolId C.int, xmlProperties unsafe.Pointer, engineInterface unsafe
 //export CombineLatest
 func CombineLatest(toolId C.int, xmlProperties unsafe.Pointer, engineInterface unsafe.Pointer, pluginInterface unsafe.Pointer) C.long {
 	plugin := &combine_latest.Plugin{}
+	return C.long(api.ConfigurePlugin(plugin, int(toolId), xmlProperties, engineInterface, pluginInterface))
+}
+
+//export Buffer
+func Buffer(toolId C.int, xmlProperties unsafe.Pointer, engineInterface unsafe.Pointer, pluginInterface unsafe.Pointer) C.long {
+	plugin := &buffer.Plugin{}
 	return C.long(api.ConfigurePlugin(plugin, int(toolId), xmlProperties, engineInterface, pluginInterface))
 }

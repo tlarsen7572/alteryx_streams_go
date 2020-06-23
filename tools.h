@@ -12,3 +12,8 @@ long __declspec(dllexport) CombineLatest(int nToolID,
    	void * pXmlProperties,
    	void *pEngineInterface,
    	void *r_pluginInterface);
+
+long __declspec(dllexport) Buffer(int nToolID,
+   	void * pXmlProperties,
+   	void *pEngineInterface,
+   	void *r_pluginInterface);

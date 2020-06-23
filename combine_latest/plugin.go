@@ -85,7 +85,7 @@ func (plugin *Plugin) initOutput() {
 	plugin.setUpCopiers()
 }
 
-func (plugin *Plugin) pushLeft(record *recordblob.RecordBlob) bool {
+func (plugin *Plugin) pushLeft(record recordblob.RecordBlob) bool {
 	err := plugin.LeftCopier.Copy(record)
 	if err != nil {
 		api.OutputMessage(plugin.ToolId, api.Error, err.Error())
@@ -95,7 +95,7 @@ func (plugin *Plugin) pushLeft(record *recordblob.RecordBlob) bool {
 	return plugin.tryPushOut(record)
 }
 
-func (plugin *Plugin) pushRight(record *recordblob.RecordBlob) bool {
+func (plugin *Plugin) pushRight(record recordblob.RecordBlob) bool {
 	err := plugin.RightCopier.Copy(record)
 	if err != nil {
 		api.OutputMessage(plugin.ToolId, api.Error, err.Error())
@@ -105,7 +105,7 @@ func (plugin *Plugin) pushRight(record *recordblob.RecordBlob) bool {
 	return plugin.tryPushOut(record)
 }
 
-func (plugin *Plugin) tryPushOut(record *recordblob.RecordBlob) bool {
+func (plugin *Plugin) tryPushOut(record recordblob.RecordBlob) bool {
 	if !(plugin.hasLeft && plugin.hasRight) {
 		return true
 	}
